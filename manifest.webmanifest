@@ -1,0 +1,10 @@
+{
+  "name": "AVETRA v3.0 | Name Intelligence",
+  "short_name": "AVETRA",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#071018",
+  "theme_color": "#071018",
+  "description": "Personal and brand name research calculator"
+}

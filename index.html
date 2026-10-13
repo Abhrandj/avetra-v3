@@ -1,0 +1,107 @@
+<!doctype html><html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#071018"><link rel="manifest" href="manifest.webmanifest"><title>AVETRA v3.0 | Name Intelligence</title><style>
+/* Transit: keep short headings intact on narrow screens */
+#transitOut th{white-space:nowrap;overflow-wrap:normal;word-break:normal}
+
+:root{--bg:#071018;--card:#0e1b26;--line:#223748;--ink:#eef7ff;--muted:#8ea6b8;--accent:#62d6ff;--good:#74e0a1;--warn:#ffcc66}
+*{box-sizing:border-box} body{margin:0;font-family:Inter,system-ui,-apple-system,sans-serif;background:radial-gradient(circle at 20% 0,#123149 0,#071018 40%);color:var(--ink)}
+.wrap{max-width:980px;margin:auto;padding:22px} header{padding:28px 0 18px} h1{font-size:clamp(28px,5vw,48px);margin:0;letter-spacing:-1.5px} .sub{color:var(--muted);margin-top:8px}
+.tabs{display:flex;gap:8px;overflow:auto;padding:8px 0 18px} button,.tab{border:1px solid var(--line);background:#0b1721;color:var(--ink);padding:11px 14px;border-radius:12px;cursor:pointer;font-weight:700}
+.tab.active{background:var(--accent);color:#00131b} .panel{display:none} .panel.active{display:block}
+.card{background:rgba(14,27,38,.92);border:1px solid var(--line);border-radius:18px;padding:18px;margin-bottom:14px;box-shadow:0 16px 50px rgba(0,0,0,.18)}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px} @media(max-width:650px){.grid{grid-template-columns:1fr}}
+label{display:block;color:var(--muted);font-size:12px;margin:0 0 6px} input,select{width:100%;padding:12px;border-radius:11px;border:1px solid var(--line);background:#08131c;color:var(--ink);font-size:16px}
+.go{background:var(--accent);color:#00131b;border:0;margin-top:14px} .result{font-size:28px;font-weight:850;margin:4px 0} .metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px} @media(max-width:600px){.metrics{grid-template-columns:1fr 1fr}}
+.metric{background:#09151e;border:1px solid var(--line);padding:12px;border-radius:12px} .metric b{display:block;font-size:20px;margin-top:4px} small,.note{color:var(--muted)} details{margin-top:12px} code{white-space:pre-wrap;color:#b9eaff} .badge{display:inline-block;padding:5px 8px;border-radius:999px;background:#123348;color:#8fe3ff;font-size:11px;font-weight:800}
+footer{color:var(--muted);font-size:12px;padding:25px 0 40px}
+
+body{min-height:100vh} .wrap{max-width:1080px}.tabs{flex-wrap:wrap;overflow:visible}
+.pill{display:inline-block;background:#123348;padding:5px 9px;border-radius:8px;color:#8fe3ff}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}
+#lifechart{width:100%;height:auto;min-width:650px}.chartwrap{overflow-x:auto}
+.chartgrid{stroke:#345064;stroke-width:1}.charttext{fill:#9bb5c5;font:12px system-ui}
+#timeline{width:100%;accent-color:#62d6ff}.warning{color:#ffcc66}
+textarea{width:100%;padding:12px;border-radius:11px;border:1px solid var(--line);background:#08131c;color:var(--ink);font:16px system-ui;resize:vertical} input[type=date]{min-height:52px;appearance:auto;-webkit-appearance:auto;color-scheme:dark}input[type=date]::-webkit-calendar-picker-indicator{filter:invert(1);opacity:1}.hint{display:block;margin-top:6px}.tablewrap{overflow:auto}table{border-collapse:collapse;width:100%;min-width:620px}th,td{border-bottom:1px solid var(--line);padding:11px;text-align:left}th{color:#9ab5c5}td:first-child{font-weight:700}.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}button:disabled{opacity:.55;cursor:not-allowed}button:focus-visible{outline:2px solid #ffcc66}
+#vchart{width:100%;min-width:660px;height:auto}.chartwrap{overflow-x:auto}.vgrid{stroke:#314b5f;stroke-width:1}.vlabel{fill:#a8c0d0;font:12px system-ui}.vdetail{padding:14px;background:#102637;border-radius:12px;margin-top:12px}#vyear{width:100%;accent-color:#62d6ff}.smalltext{font-size:12px;color:var(--muted)}
+/* v1.8 mobile cleanup */
+.tabs{gap:8px}.tab{font-size:13px;white-space:nowrap}
+.card{overflow-wrap:anywhere}
+.compat-names{font-size:clamp(21px,4vw,30px);line-height:1.32}
+.name-amp{color:var(--accent);padding:0 3px}
+#compatibility .grid{gap:18px}
+#compatibility .grid>div{min-width:0}
+#compatibility input,#compatibility select{max-width:100%;min-width:0}
+#compatibility input[type=date]{width:100%;display:block}
+#compatibility .actions button{flex:1 1 170px;min-height:46px}
+#compatibility .actions{align-items:stretch}
+#compatibility .reading{border-top:1px solid var(--line);margin-top:20px;padding-top:12px}
+#compatibility .metrics{grid-template-columns:repeat(2,minmax(0,1fr))}
+#compatibility .metric{min-width:0}
+@media(max-width:650px){.wrap{padding:14px}.card{padding:16px}.tabs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}.tab{white-space:normal;text-align:center}.tab:last-child:nth-child(odd){grid-column:1/-1}#compatibility .grid{grid-template-columns:1fr}}
+.obstacle-panel{margin-top:14px;padding:14px;border:1px solid var(--line);border-radius:12px;background:rgba(10,25,36,.3)}.obstacle-panel.obstacle-active{border-color:#a58a52;background:rgba(180,140,60,.10)}.obstacle-panel.obstacle-inactive{border-color:var(--line);background:transparent}.obstacle-panel strong{display:block;margin-bottom:6px}
+a,a:visited{color:#62d6ff}a:hover{color:#b7efff}.combined-reading .reading-block{padding:12px 0;border-top:1px solid var(--line)}.combined-reading ul{padding-left:22px;line-height:1.65}.combined-reading h3{margin:6px 0 10px}.combined-reading .reading-status{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:16px 0}.combined-reading .reading-status span{padding:12px;border:1px solid var(--line);border-radius:12px}.combined-reading details.deep-analysis{border-top:1px solid var(--line);margin-top:18px;padding-top:16px}.combined-reading details.deep-analysis>summary{cursor:pointer;font-weight:700;padding:12px 0}.combined-reading #avetraDeepContent>.card{margin:12px 0;padding:14px}.combined-reading #avetraDeepContent h2{font-size:1.2rem}@media(max-width:370px){.combined-reading .reading-status{grid-template-columns:1fr}}.platinum-metrics span{display:flex;flex-direction:column;gap:5px;min-width:0}.platinum-metrics span small{color:var(--muted);font-size:.8rem}.platinum-metrics span b{font-size:1.12rem;overflow-wrap:anywhere}.platinum-metrics span .unverified{font-size:.88rem;color:var(--muted);font-weight:500}.platinum-reading{border-top:1px solid var(--line);padding-top:16px;margin-top:20px}.platinum-reading h4{margin:15px 0 6px}.platinum-reading li{margin-bottom:10px}.platinum-reading details{margin-top:14px}.combined-reading details.reading-extra{border-top:1px solid var(--line);padding-top:14px;margin-top:20px}.combined-reading details.reading-extra>summary{cursor:pointer;font-weight:700;padding:10px 0}.combined-reading .deep-analysis #avetraDeepContent>.card{padding:12px;margin:10px 0}.combined-reading .deep-analysis #avetraDeepContent>details{padding:8px 0}.combined-reading .platinum-reading{margin-top:12px}.clean-analysis .clean-section{border-top:1px solid #254153;margin-top:22px;padding-top:18px}
+.clean-analysis .clean-section>h3{margin:0 0 12px}
+.clean-analysis .clean-section>p{margin:12px 0;line-height:1.55}
+.clean-analysis .clean-accordion>summary{cursor:pointer;font-weight:700;font-size:1.08rem;line-height:1.5}
+.clean-analysis .clean-subdetail{margin:14px 0;padding:12px 14px;border:1px solid #254153;border-radius:12px}
+.clean-analysis .clean-subdetail>summary{cursor:pointer;font-weight:600}
+.clean-analysis #avetraDeepContent>.obstacle-panel{margin-top:12px}
+.clean-analysis #avetraDeepContent>h3{margin-top:16px}
+.clean-analysis .platinum-metrics{margin-bottom:10px}
+@media(max-width:380px){.clean-analysis .platinum-metrics span{min-width:0}.clean-analysis .platinum-metrics b{overflow-wrap:anywhere}}
+
+/* v2.6.8: readable long-form report, accessible controls, safe-area spacing */
+html{scroll-behavior:smooth}body{overflow-wrap:break-word} .wrap{padding-bottom:max(26px,env(safe-area-inset-bottom))}
+.clean-analysis p,.clean-analysis li{line-height:1.62}.clean-analysis details>summary{min-height:44px;display:list-item;align-content:center}
+.tab{min-height:46px;line-height:1.3}button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,summary:focus-visible{outline:3px solid #62d6ff;outline-offset:3px}
+#avetraBackTop{position:fixed;right:16px;bottom:calc(20px + env(safe-area-inset-bottom));z-index:100;border:1px solid #42667a;background:#143247;color:#e7f6ff;box-shadow:0 4px 18px #0008;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .2s,visibility .2s;min-height:46px;padding:10px 16px;border-radius:99px}
+#avetraBackTop.show{opacity:1;visibility:visible;pointer-events:auto}
+@media(max-width:600px){.clean-analysis .card{padding:16px}.clean-analysis .reading-status{gap:8px}.clean-analysis .platinum-metrics span{padding:10px}.clean-analysis h2{overflow-wrap:anywhere}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}#avetraBackTop{transition:none}}
+
+/* v2.6.8 smart dashboard: preserve metrics, collapse only secondary display */
+
+
+#avetraBackTop{width:46px;height:46px;padding:0;right:12px;bottom:calc(80px + env(safe-area-inset-bottom));font-size:1.35rem;line-height:1}
+.avetra-more-metrics{margin:6px 0 18px;border:1px solid var(--line);border-radius:12px;padding:6px 12px}
+.avetra-more-metrics>summary{font-weight:700;cursor:pointer;padding:10px 0;min-height:44px}
+.avetra-more-metrics .avetra-extra-grid{margin:10px 0}
+
+ .avetra-detail-links{display:flex;flex-wrap:wrap;gap:10px}.avetra-detail-links button{background:#123348;border:1px solid #345b70;color:#8fe3ff;padding:11px 13px;border-radius:10px;font:inherit;font-weight:700;cursor:pointer}.avetra-synthesis{border-top:1px solid #345064;padding-top:18px}/* v2.7.1 iPhone usability */
+#personal>.card:first-child{padding-bottom:32px}
+#pcalc{display:block;min-height:52px;margin-top:18px;margin-bottom:24px;position:relative;z-index:1}
+#avetraBackTop{width:38px;height:38px;min-height:38px;right:8px;bottom:calc(112px + env(safe-area-inset-bottom));font-size:1.05rem}
+.avetra-reading-engine p{margin:10px 0;line-height:1.6}
+@media(max-width:600px){#personal>.card:first-child{padding-bottom:44px}.wrap{padding-bottom:calc(125px + env(safe-area-inset-bottom))}}
+.avetra-audit-detail{padding:10px 2px}.avetra-audit-detail p{line-height:1.65;margin:10px 0}
+
+/* v2.8.4 BrandName mobile-first, scoped to BrandName only */
+#brand .brand-guide>summary{cursor:pointer;font-size:clamp(17px,2.2vw,21px);font-weight:750;line-height:1.4;min-height:42px;padding:7px 0}
+#brand .brand-guide[open]>summary{margin-bottom:14px}
+#brand .brand-compare-grid,#brand .brand-candidate-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:16px}
+#brand .brand-compare-card{min-width:0;border:1px solid var(--line);background:#09151e;border-radius:14px;padding:15px}
+#brand .brand-compare-card h4{margin:0 0 12px;font-size:19px}
+#brand .brand-data-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+#brand .brand-data-grid>div{min-width:0}
+#brand .brand-data-grid small{display:block;font-size:12px;color:var(--muted);margin-bottom:4px}
+#brand .brand-data-grid strong{font-size:clamp(17px,2.5vw,22px);overflow-wrap:anywhere}
+#brand .brand-candidate-grid .brand-compare-card h4{overflow-wrap:anywhere}
+#brand .brand-compare-card .brand-catur{margin-top:12px;color:var(--muted);font-size:13px}
+@media(max-width:650px){#brand .brand-compare-grid,#brand .brand-candidate-grid{grid-template-columns:minmax(0,1fr)}#brand .brand-compare-card{padding:14px}#brand .brand-data-grid strong{font-size:20px}}
+#brandlab .lab-table{overflow-x:auto}#brandlab table{min-width:610px}#brandlab .lab-best{color:var(--good);font-weight:800}#brandlab .lab-muted{color:var(--muted)}
+</style></head><body><div class="wrap">
+<header><span class="badge">AVETRA v3.0.0 • TAHAP 1</span><h1>AVETRA <span style="color:#62d6ff">✦</span></h1><p class="sub">Personal, BrandName, Vitranta & SCS Match & Partner research tools. Masukkan nama untuk mulai menganalisis.</p></header>
+<div class="tabs"><button class="tab active" data-tab="personal">Personal / Platinum</button><button class="tab" data-tab="brand">BrandName</button><button class="tab" data-tab="lifemap">Vitranta Life Map</button><button class="tab" data-tab="cabalistic">Arti Nama</button><button class="tab" data-tab="kamus">Kamus SCS</button><button class="tab" data-tab="brandlab">Brand Lab 3.0</button></div>
+<section id="cabalistic" class="panel"><div class="card"><h2>Cabalistic • Arti Nama</h2><p class="note">Modul independen berbasis tabel nilai huruf dan arti historis. Tidak mengubah hasil SCS Platinum.</p><label for="cname">Nama yang ingin dianalisis</label><input id="cname" autocomplete="off" placeholder="Ketik nama, contoh: Zoviel Anggica"><p class="note">Hasil berubah langsung saat Anda mengetik.</p></div><div id="cout" aria-live="polite"></div><div id="cdecomp" aria-live="polite"></div></section>
+<section id="kamus" class="panel"><div class="card"><h2>Kamus Interpretasi SCS · Tahap 1</h2><p class="note">Rangkuman interpretasi historis dari artikel Arkand. Klasifikasi dasar bukan kesimpulan gabungan. Klaim tentang penyakit, cedera, dan kematian tidak dapat digunakan untuk memprediksi kejadian nyata.</p><div class="grid"><div><label for="dictType">Indikator</label><select id="dictType"><option value="harani">Harani</option><option value="acoustic_root">Acoustic Root (A.R.)</option><option value="time">Time</option><option value="synchronicity">Synchronicity</option><option value="coherence">Coherence</option><option value="obstacle3">Obstacle 3</option></select></div><div><label for="dictValue">Angka</label><select id="dictValue"></select></div></div><div id="dictOutput" aria-live="polite"></div><p class="note">Sumber: <a href="https://www.jasapembuatnama.com/2015/12/cara-membaca-struktur-nama-scs-tool.html" target="_blank" rel="noopener">Bagian 1</a> · <a href="https://www.jasapembuatnama.com/2016/03/cara-membaca-struktur-nama-time-ar-sv.html" target="_blank" rel="noopener">Bagian 2</a>. Interpretasi SV/CV per nilai belum dimasukkan sampai diverifikasi lebih lanjut.</p></div><div class="card"><h3>Referensi perhitungan Platinum dan Vitranta</h3><p>Perhitungan A.R., Time, Besar, Kecil, Catur, f, c.i, dan Obstacle 3 dapat ditelusuri melalui dokumentasi metode SCS. Synergy memakai 100 nilai Vitranta; Productive memakai posisi 22–81; Momentum memakai posisi 19–58. Formula agregat merupakan rekonstruksi dari sampel historis, bukan model prediksi tervalidasi.</p><p><a href="https://resellernama.wordpress.com/2020/01/14/cara-membaca-fmei-scs-tool/" target="_blank" rel="noopener noreferrer">Referensi historis: Cara Membaca FMEI SCS Tool ↗</a></p><p class="note">Makna lengkap FMEI dapat dibaca pada referensi tersebut. Istilah historis tidak menyatakan pembuktian ilmiah.</p></div></section><section id="personal" class="panel active"><div class="card"><h2>Personal Analysis</h2><p class="note">Ringkasan indikator dan pembacaan gabungan. Referensi rumus tersedia di Kamus SCS.</p><div class="grid"><div><label for="pname">Nama lengkap atau nama panggilan</label><input id="pname" autocomplete="off" placeholder="Ketik nama"></div><div><label for="pdob">Tanggal lahir (ketuk untuk memilih)</label><input id="pdob" type="date" aria-label="Pilih tanggal lahir"><small class="hint">Format: hari / bulan / tahun</small></div><div><label for="psex">Jenis kelamin / jenis entitas</label><select id="psex"><option value="0">Male</option><option value="1">Female</option><option value="2">Company</option><option value="3">Country</option></select></div></div><button class="go" id="pcalc">Hitung Personal</button></div><div id="pout"></div></section>
+<section id="brand" class="panel"><div class="card"><h2>BrandName Analysis</h2><div class="grid"><div><label for="bname">Nama brand</label><input id="bname" autocomplete="off" placeholder="Ketik nama brand"></div><div><label for="btype">Kategori bisnis</label><select id="btype"></select></div></div><details class="card brand-guide" style="margin-top:12px"><summary>AVETRA Extended: panduan kategori usaha</summary><p class="note">Untuk Kontraktor &amp; Konstruksi, bandingkan dua kategori Classic yang sudah tersedia. Tidak ada rumus atau kategori SCS baru.</p><label for="constructionGuide">Pendekatan usaha (opsional)</label><select id="constructionGuide"><option value="">Pilih secara manual</option><option value="property">Property: usaha terkait properti/bangunan</option><option value="service">Service: usaha jasa pelaksanaan</option></select><p id="constructionGuideNote" class="note">Pilih pendekatan Property atau Service, atau gunakan daftar kategori Classic secara langsung.</p><button type="button" id="compareConstruction">Bandingkan Property vs Service</button><div id="constructionCompareOut" aria-live="polite"></div></details><button class="go" id="bcalc">Hitung Brand</button><p class="note">Bandingkan beberapa kandidat nama sekaligus:</p><textarea id="candidates" rows="3" placeholder="Satu nama per baris, contoh:&#10;AVETRA&#10;ZEVORA"></textarea><button id="compareBrands">Bandingkan Kandidat</button></div><div id="bout"></div><div id="compareOut"></div></section>
+<section id="brandlab" class="panel">
+<div class="card"><span class="badge">AVETRA EXTENDED · v3.0 TAHAP 1</span><h2>Brand Lab: bandingkan calon nama</h2><p class="note">Perbandingan memakai mesin BrandName Classic yang sama dengan v2.8.8. Interpretasi numerologi bersifat simbolis, bukan ukuran keberhasilan bisnis.</p>
+<label for="labNames">Nama calon brand (satu nama per baris, maksimal 20)</label><textarea id="labNames" rows="5" placeholder="AVETRA&#10;TOVARA&#10;NAMA BRAND LAIN"></textarea>
+<label for="labCategory">Kategori bisnis</label><select id="labCategory"></select>
+<div class="actions"><button class="go" id="labCompare">Bandingkan nama</button><button id="labFromBrand">Ambil nama dari BrandName</button><button id="labExport" disabled>Ekspor CSV</button></div><p class="note" id="labMessage" role="status" aria-live="polite"></p></div>
+<div id="labResults" aria-live="polite"></div>
+<div class="card"><h3>Daftar tersimpan di perangkat ini</h3><p class="note">Disimpan hanya pada browser/perangkat ini (localStorage), tanpa akun atau server. Jangan mengandalkan fitur ini sebagai cadangan permanen.</p><div class="actions"><button id="labSave" disabled>Simpan hasil perbandingan</button><button id="labClearSaved">Hapus semua simpanan</button></div><div id="labSaved"></div></div>
+</section>
+<section id="lifemap" class="panel"><div class="card"><h2>Vitranta Life Map</h2><div class="grid"><div><label for="lname">Nama</label><input id="lname" placeholder="Ketik nama"></div><div><label for="ldob">Tanggal lahir (ketuk untuk memilih)</label><input id="ldob" type="date" aria-label="Pilih tanggal lahir"><small class="hint">Format: hari / bulan / tahun</small></div></div><button class="go" id="lcalc">Hitung Life Map</button><p class="note">Mode otomatis: masukkan nama dan tanggal lahir, lalu hitung 100 nilai Vitranta dengan port mesin Platinum. Kesesuaian historis agregasi masih dalam audit.</p></div><div class="card"><h3>Analisis array Vitranta asli</h3><p class="note">Tempel 100 nilai Vitranta dari mesin Platinum asli, dipisahkan koma, spasi, atau baris. AVETRA menghitung Synergy, Productive, Momentum dan menggambar Life Map. Mode ini untuk membandingkan keluaran perangkat lunak lama dengan hasil otomatis AVETRA.</p><label for="vvalues">100 nilai Vitranta</label><textarea id="vvalues" rows="5" placeholder="Contoh format: 19, 11, 11, ... (tepat 100 nilai)"></textarea><button class="go" id="vcalc">Analisis 100 Nilai</button><button id="vclear">Kosongkan</button></div><div id="lout"></div></section>
+<footer>AVETRA menggunakan rekonstruksi metode SCS lama. Hasil numerologi bukan prediksi ilmiah tentang karakter, kesehatan, karier, atau nasib.</footer>
+</div><script src="ui-polish.js?v=2.8.8"></script><script src="cabalistic-engine.js?v=2.8.8"></script><script src="cabalistic-decomposition.js?v=2.8.8"></script><script src="brand-engine.js?v=2.8.8"></script><script src="vitranta-engine.js?v=2.8.8"></script><script src="platinum-aggregate.js?v=2.8.8"></script><script src="app.js?v=2.8.8"></script><script src="enhancements.js?v=2.8.8"></script><script src="vitranta-analysis.js?v=2.8.8"></script><script src="auto-vitranta.js?v=2.8.8"></script><script src="interpretation.js?v=2.8.8"></script><script src="scs-dictionary.js?v=2.8.8"></script><script src="scs-dictionary-ui.js?v=2.8.8"></script><script src="compatibility.js?v=2.8.8"></script><script src="combined-interpretation.js?v=2.8.8"></script><script src="transit-calendar.js?v=2.8.8"></script><script src="brand-category-guide.js?v=2.8.8"></script><script>if("serviceWorker"in navigator)navigator.serviceWorker.register("./sw.js").catch(()=>{});</script><script src="personal-vitranta-sync.js?v=2.8.8"></script><script src="brand-lab-v3.js?v=3.0.0"></script></body></html>

@@ -1,0 +1,188 @@
+{
+  "version": "2.2",
+  "stage": "Kamus Interpretasi SCS",
+  "sources": {
+    "dasar": "https://www.jasapembuatnama.com/2015/12/cara-membaca-struktur-nama-scs-tool.html",
+    "detail": "https://www.jasapembuatnama.com/2016/03/cara-membaca-struktur-nama-time-ar-sv.html"
+  },
+  "harani": {
+    "1": {
+      "status_dasar": "positif",
+      "fase_pendek": "Awal baru, kemandirian, peluang usaha",
+      "fase_panjang": "Kemantapan finansial dan usaha",
+      "source": "detail"
+    },
+    "2": {
+      "status_dasar": "positif",
+      "fase_pendek": "Relasi, negosiasi, kemitraan",
+      "fase_panjang": "Hubungan dan ekonomi yang lancar",
+      "source": "detail"
+    },
+    "3": {
+      "status_dasar": "positif",
+      "fase_pendek": "Kreativitas, inspirasi, ekspresi diri",
+      "fase_panjang": "Jaringan baru, aktivitas dan kerja tim",
+      "source": "detail"
+    },
+    "4": {
+      "status_dasar": "positif",
+      "fase_pendek": "Tekad, peluang usaha, kemajuan finansial",
+      "fase_panjang": "Perbaikan karier, keuangan, dan hubungan",
+      "source": "detail"
+    },
+    "5": {
+      "status_dasar": "negatif",
+      "fase_pendek": "Klaim sumber: risiko kepercayaan, penipuan dan pengkhianatan",
+      "fase_panjang": "Klaim sumber: risiko kesehatan dan kejadian berat",
+      "source": "detail"
+    },
+    "6": {
+      "status_dasar": "positif",
+      "fase_pendek": "Keluarga, kepedulian, tanggung jawab",
+      "fase_panjang": "Perbaikan, pemulihan dan kemajuan",
+      "source": "detail"
+    },
+    "7": {
+      "status_dasar": "negatif",
+      "fase_pendek": "Tantangan alokasi keuangan",
+      "fase_panjang": "Klaim sumber: penyakit berat dan konflik emosional",
+      "source": "detail"
+    },
+    "8": {
+      "status_dasar": "negatif",
+      "fase_pendek": "Klaim sumber: risiko kecelakaan berat",
+      "fase_panjang": "Klaim sumber: penyakit berat dan tindakan menyakiti diri",
+      "source": "detail"
+    },
+    "9": {
+      "status_dasar": "negatif",
+      "fase_pendek": "Tantangan pengelolaan keuangan",
+      "fase_panjang": "Klaim sumber: kekerasan dan penyakit berat",
+      "source": "detail"
+    },
+    "11": {
+      "status_dasar": "negatif",
+      "fase_pendek": "Hambatan usaha dan tuduhan",
+      "fase_panjang": "Klaim sumber: pengkhianatan dan kekerasan",
+      "source": "detail"
+    },
+    "13": {
+      "status_dasar": "negatif",
+      "fase_pendek": "Hasil usaha tidak optimal",
+      "fase_panjang": "Klaim sumber: kematian yang direkayasa",
+      "source": "detail"
+    }
+  },
+  "acoustic_root": {
+    "1": {
+      "arti": "Kepemimpinan dan kemandirian",
+      "source": "detail"
+    },
+    "2": {
+      "arti": "Diplomasi, kerja sama, kemitraan",
+      "source": "detail"
+    },
+    "3": {
+      "arti": "Ekspresi, kreativitas, kebahagiaan",
+      "source": "detail"
+    },
+    "4": {
+      "arti": "Organisasi, manajemen, tanggung jawab",
+      "source": "detail"
+    },
+    "5": {
+      "arti": "Perubahan, kebebasan, kemajuan",
+      "source": "detail"
+    },
+    "6": {
+      "arti": "Pelayanan, kepedulian, kedermawanan",
+      "source": "detail"
+    },
+    "7": {
+      "arti": "Penelitian, ilmu, filsafat",
+      "source": "detail"
+    },
+    "8": {
+      "arti": "Administrasi, manajemen, kepemimpinan",
+      "source": "detail"
+    },
+    "9": {
+      "arti": "Kemanusiaan, seni, kasih",
+      "source": "detail"
+    },
+    "11": {
+      "arti": "Inspirasi, intuisi, spiritualitas",
+      "source": "detail"
+    },
+    "22": {
+      "arti": "Pengelolaan proyek besar",
+      "source": "detail"
+    },
+    "33": {
+      "arti": "Pengajaran, kesejahteraan",
+      "source": "detail"
+    }
+  },
+  "time": {
+    "1": {
+      "kekuatan": "Kreatif, mandiri, berani",
+      "tantangan": "Keras kepala, dominan",
+      "source": "detail"
+    },
+    "2": {
+      "kekuatan": "Damai, bersahabat, rendah hati",
+      "tantangan": "Sensitif, mudah terluka",
+      "source": "detail"
+    },
+    "3": {
+      "kekuatan": "Seni, semangat juang",
+      "tantangan": "Boros, bicara lepas",
+      "source": "detail"
+    },
+    "4": {
+      "kekuatan": "Tanggung jawab, jujur, sistematis",
+      "tantangan": "Keras kepala, mendominasi",
+      "source": "detail"
+    },
+    "5": {
+      "kekuatan": "Energi, adaptasi, kebebasan",
+      "tantangan": "Gelisah, tidak puas",
+      "source": "detail"
+    },
+    "6": {
+      "kekuatan": "Peduli, setia, keseimbangan",
+      "tantangan": "Pengorbanan berlebihan",
+      "source": "detail"
+    },
+    "7": {
+      "kekuatan": "Analitis, introspektif",
+      "tantangan": "Tertutup, sulit percaya",
+      "source": "detail"
+    },
+    "8": {
+      "kekuatan": "Idealisme, kemampuan menjaga rahasia",
+      "tantangan": "Materialistis, keras kepala",
+      "source": "detail"
+    },
+    "9": {
+      "kekuatan": "Kemanusiaan, kemurahan hati",
+      "tantangan": "Impulsif, posesif",
+      "source": "detail"
+    }
+  },
+  "thresholds": {
+    "synchronicity": {
+      "positive_min": 0.8,
+      "source": "dasar"
+    },
+    "coherence": {
+      "positive_min": 0.7,
+      "source": "dasar"
+    }
+  },
+  "obstacle3": {
+    "condition": "reduce(abs((AR==22?4:AR)-Time)) == 3",
+    "historical_claim": "Dihubungkan oleh sumber dengan risiko sakit atau kecelakaan; bukan diagnosis atau prediksi.",
+    "source": "dasar"
+  }
+}
